@@ -4,7 +4,7 @@ public class FirstClass {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		System.out.println("Hello Suma");
-		System.out.println("Bye Suma");
+		System.out.println("Bye Kiran");
 	}
 
 }
