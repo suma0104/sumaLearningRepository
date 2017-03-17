@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="BuyCameras">
+	<test name="Buy DSLR Camera 80D Single Kit" enabled="true">
+		<classes>
+			 <class name="com.selenium.testcases.BuyCameras" /> 
+		</classes>
+	</test>
+</suite>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="BuyCameras" duration-ms="20867" started-at="2017-03-17T02:15:32Z" finished-at="2017-03-17T02:15:53Z">
+    <groups>
+    </groups>
+    <test name="Buy DSLR Camera 80D Single Kit" duration-ms="20867" started-at="2017-03-17T02:15:32Z" finished-at="2017-03-17T02:15:53Z">
+      <class name="com.selenium.testcases.BuyCameras">
+        <test-method status="PASS" signature="initialSetUp()[pri:0, instance:com.selenium.testcases.BuyCameras@4009e306]" name="initialSetUp" is-config="true" duration-ms="8279" started-at="2017-03-17T13:15:32Z" finished-at="2017-03-17T13:15:40Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initialSetUp -->
+        <test-method status="PASS" signature="buyDSLRCameras()[pri:0, instance:com.selenium.testcases.BuyCameras@4009e306]" name="buyDSLRCameras" duration-ms="5439" started-at="2017-03-17T13:15:40Z" finished-at="2017-03-17T13:15:46Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- buyDSLRCameras -->
+        <test-method status="PASS" signature="afterSetUp()[pri:0, instance:com.selenium.testcases.BuyCameras@4009e306]" name="afterSetUp" is-config="true" duration-ms="7090" started-at="2017-03-17T13:15:46Z" finished-at="2017-03-17T13:15:53Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterSetUp -->
+      </class> <!-- com.selenium.testcases.BuyCameras -->
+    </test> <!-- Buy DSLR Camera 80D Single Kit -->
+  </suite> <!-- BuyCameras -->
+</testng-results>

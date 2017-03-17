@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="." default="usage" name="SumaFirstFrameWork">
+    <property environment="env"/>
+	<property name="ws.home" value="${basedir}" />
+	<property name="ws.jars" value="C:\Jars" />
+	<property name="test.dest" value="${ws.home}/build" />
+	<property name="test.src" value="${ws.home}/src" />
+	<property name="ng.result" value="test-output" />
+	<property name="LIB" value="${basedir}/lib"/>
+	<property name="BIN" value="${basedir}/bin"/>
+	
+	<path id="master-classpath">
+	<pathelement location="${BIN}"/>
+	<fileset dir="${LIB}" includes="*.jar"/>
+	</path>
+
+	<target name="setClassPath" unless="test.classpath">
+		<path id="classpath_jars">
+			<fileset dir="${ws.jars}" includes="*.jar"/>
+		</path>
+		<pathconvert pathsep=":" property="test.classpath" refid="classpath_jars"/>
+	</target>
+	
+	
+	 <target name="init" depends="setClassPath">
+	       <tstamp>
+	       <format property="start.time"  pattern="dd_MMM_yyyy_hh_mm_aa"/>
+	       </tstamp>
+	 	<condition property="ANT"
+	 		value="${env.ANT_HOME}/bin/ant.bat"
+	 		else="${env.ANT_HOME}/bin/ant">
+	 		<os family="windows"/>
+	 	
+	 	</condition>
+	 	<taskdef resource="testngtasks" classpath="C:\Users\Chirag K S\jars for selenium\testng-6.8.5.jar"/>
+	 		
+	    </target>
+	
+	
+	<!--- ALL -->
+	
+	<target name="all">
+	</target>
+
+	<target name="clean">
+		<delete dir="${test.dest}"/>
+	</target>
+	
+	<!-- compile -->
+	<target name="compile" depends="init, clean">
+		<delete includeemptydirs="true" quiet="true">
+			<fileset dir="${test.dest}" includes="**/*"/>
+		</delete>
+		<echo message="making the directory.."/>
+		<mkdir dir="${test.dest}"/>
+		<echo message="classpath ---${test.classpath}"></echo>
+		<echo message="base directory ---${basedir}"></echo>
+		<echo message="compiling..."></echo>
+		
+		<javac
+			debug="true"
+			destdir="${test.dest}"
+			srcdir="${test.src}"
+			target="1.7"
+			classpath="${test.classpath}"
+			>
+		</javac>
+		
+		<copy todir="${test.dest}">
+			<fileset dir="${test.src}" excludes="**/*.java"></fileset>
+		</copy>
+	</target>
+	
+
+	<target name="build" depends="init">
+	</target>
+	
+	
+	<target name="usage">
+	<echo>ant will execute the test...</echo>
+	</target>
+	
+	
+	<target name="generateReports">
+	        <delete dir="${basedir}/testng-xslt">
+	        </delete>
+	        <mkdir dir="${basedir}/testng-xslt">
+	        </mkdir>
+	        <xslt in="${basedir}/test-output/testng-results.xml" style="${basedir}/testng-results.xsl" out="${basedir}/testng-xslt/index.html" processor="SaxonLiaison">
+	            <param expression="${basedir}/testng-xslt/" name="testNgXslt.outputDir" />
+	            <param expression="true" name="testNgXslt.sortTestCaseLinks" />
+	            <param expression="FAIL,SKIP,PASS,CONF,BY_CLASS" name="testNgXslt.testDetailsFilter" />
+	            <param expression="true" name="testNgXslt.showRuntimeTotals" />
+	            <classpath refid="master-classpath">
+	            </classpath>
+	        </xslt>
+	    </target>
+	
+	<path id="test.c">
+	<fileset dir="${ws.jars}" includes="*.jar"></fileset>
+	</path>
+	
+	
+	<target name="run" depends="compile">
+		<testng classpath="${test.classpath}:${test.dest}" suitename="BuyCameras">
+		<xmlfileset dir="${ws.home}" includes="BuyCameras.xml"/>
+		</testng>
+	</target>
+</project>
